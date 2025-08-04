@@ -1,0 +1,1005 @@
+:root {
+    --text-primary: #000000;
+    --text-secondary: #8e8e93;
+    --text-tertiary: #c7c7cc;
+    --background-primary: #ffffff;
+    --background-secondary: #f8f9fa;
+    --cashapp-green: #00d64b;
+    --cashapp-green-dark: #00c43d;
+    --border-color: #e0e0e0;
+    --shadow-light: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-medium: 0 10px 30px rgba(0,0,0,0.15);
+    --shadow-heavy: 0 20px 60px rgba(0,0,0,0.2);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-system);
+    background: linear-gradient(135deg, #00d64b 0%, #00c43d 25%, #00b337 50%, #00a332 75%, #00932d 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.app-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 50px;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* CONTROL PANEL */
+.control-panel {
+    flex: 1;
+    max-width: 400px;
+    background: var(--background-primary);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: var(--shadow-medium);
+    position: sticky;
+    top: 20px;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInLeft 0.8s ease-out;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 214, 75, 0.1);
+}
+
+.control-panel:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 214, 75, 0.2);
+    border-color: rgba(0, 214, 75, 0.2);
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--cashapp-green), var(--cashapp-green-dark), #00a332, var(--cashapp-green));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    animation: textGradient 3s ease infinite, bounceIn 0.8s ease-out;
+    cursor: default;
+    position: relative;
+}
+
+.header h1:hover {
+    animation: textGradient 1s ease infinite, pulse 0.6s ease-in-out;
+}
+
+@keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-20px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.control-group {
+    margin-bottom: 25px;
+}
+
+.control-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.control-group input,
+.control-group select {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--background-secondary);
+    transform: translateY(0);
+    position: relative;
+}
+
+.control-group input:hover,
+.control-group select:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 214, 75, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 214, 75, 0.1);
+}
+
+.control-group input:focus,
+.control-group select:focus {
+    outline: none;
+    border-color: var(--cashapp-green);
+    background: var(--background-primary);
+    box-shadow: 0 0 0 4px rgba(0, 214, 75, 0.15), 0 12px 30px rgba(0, 214, 75, 0.2);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.control-group small {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.privacy-section {
+    background: linear-gradient(135deg, #f8f9ff, #f0f0f5, #f8f9ff);
+    background-size: 200% 200%;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px 0;
+    animation: privacyFloat 0.8s ease-out, privacyGradient 6s ease infinite;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 214, 75, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.privacy-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 214, 75, 0.1);
+    border-color: rgba(0, 214, 75, 0.3);
+}
+
+.privacy-section::before {
+    content: '🔒';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    opacity: 0.5;
+    animation: lockFloat 2s ease-in-out infinite;
+}
+
+@keyframes privacyFloat {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes privacyGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes lockFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.privacy-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: var(--transition);
+}
+
+.checkbox-label:hover {
+    color: var(--cashapp-green);
+    transform: translateX(4px);
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--cashapp-green);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 18px 24px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.3px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--cashapp-green), var(--cashapp-green-dark), #00a332);
+    background-size: 200% 200%;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 214, 75, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: buttonSlideIn 0.6s ease-out;
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 214, 75, 0.5);
+    background-position: 100% 0;
+    animation: buttonGlow 0.6s ease-in-out;
+}
+
+.primary-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 214, 75, 0.4);
+}
+
+.primary-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s;
+}
+
+.primary-btn:hover::before {
+    left: 100%;
+}
+
+@keyframes buttonSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonGlow {
+    0% { box-shadow: 0 8px 25px rgba(0, 214, 75, 0.3); }
+    50% { box-shadow: 0 15px 40px rgba(0, 214, 75, 0.6); }
+    100% { box-shadow: 0 15px 40px rgba(0, 214, 75, 0.5); }
+}
+
+.secondary-btn {
+    background: linear-gradient(135deg, #333, #555);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #e8f5e8, #f0f8f0, #e8f5e8);
+    background-size: 200% 200%;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 214, 75, 0.2);
+    animation: statsFloat 0.8s ease-out, statsGradient 4s ease infinite;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 214, 75, 0.15);
+    border-color: rgba(0, 214, 75, 0.4);
+}
+
+.stats::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 214, 75, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes statsFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes statsGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--cashapp-green);
+    margin-bottom: 4px;
+    animation: countUp 0.8s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.stat-number:hover {
+    transform: scale(1.1);
+    color: var(--cashapp-green-dark);
+    text-shadow: 0 0 10px rgba(0, 214, 75, 0.3);
+}
+
+@keyframes countUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(10px);
+    }
+    50% {
+        transform: scale(1.1) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* PHONE DISPLAY - Using provided iPhone design */
+.phone-display {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.phone-container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+}
+
+.iphone-frame {
+    width: 100%;
+    height: 100%;
+    background: var(--background-primary);
+    border-radius: 40px;
+    border: 8px solid #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.8s ease-out;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iphone-frame:hover {
+    transform: translateY(-5px) rotateY(5deg);
+    box-shadow: 0 30px 60px rgba(0, 214, 75, 0.2), 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px) rotateY(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(0deg);
+    }
+}
+
+.dynamic-island {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 126px;
+    height: 37px;
+    background: #1a1a1a;
+    border-radius: 19px;
+    z-index: 10;
+    animation: islandPulse 3s ease-in-out infinite;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dynamic-island:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 4px 15px rgba(26, 26, 26, 0.3);
+}
+
+@keyframes islandPulse {
+    0%, 100% { 
+        background: #1a1a1a;
+        box-shadow: 0 0 0 0 rgba(26, 26, 26, 0.4);
+    }
+    50% { 
+        background: #2a2a2a;
+        box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.1);
+    }
+}
+
+.phone-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 0;
+    position: relative;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px 0;
+    height: 54px;
+    position: relative;
+    z-index: 5;
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.status-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Real iPhone Status Bar Icons with correct spacing */
+.signal-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.wifi-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+}
+
+.battery-container {
+    display: flex;
+    align-items: center;
+}
+
+.status-icon {
+    height: 12px;
+    width: auto;
+    object-fit: contain;
+}
+
+.battery-icon-img {
+    height: 14px;
+    width: auto;
+    object-fit: contain;
+}
+
+.screen-content {
+    flex: 1;
+    background: var(--background-primary);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: #1a1a1a;
+    border-radius: 2.5px;
+}
+
+/* CASH APP CONTENT */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    flex-shrink: 0;
+}
+
+.close-button, .menu-button {
+    font-size: 28px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.close-button:hover, .menu-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.profile-section {
+    text-align: center;
+    padding: 0 30px;
+    margin-bottom: 40px;
+}
+
+.profile-image-container {
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    background: #f0f0f0;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: #999;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+}
+
+.recipient-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.payment-info {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.cashtag {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.transaction-section {
+    text-align: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+}
+
+.amount-display {
+    margin-bottom: 20px;
+}
+
+.currency {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: 4px;
+}
+
+.amount {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -2px;
+}
+
+.transaction-details {
+    margin-bottom: 20px;
+}
+
+.note {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.timestamp {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.transaction-actions {
+    padding: 0 30px;
+    padding-bottom: 118px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.completed-button {
+    background: var(--cashapp-green);
+    color: white;
+    border: none;
+    padding: 16px 60px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 214, 75, 0.3);
+    width: 85%;
+    justify-content: center;
+}
+
+.completed-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 214, 75, 0.4);
+}
+
+.checkmark {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.receipt-button {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid #d1d1d6;
+    padding: 14px 60px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 85%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.receipt-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: #999;
+}
+
+/* BOTTOM NAVIGATION WITH REAL CASH APP ICONS */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 30px 30px 30px;
+    border-top: 1px solid #f0f0f0;
+    background: var(--background-primary);
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 17px;
+    left: 0;
+    right: 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.nav-content:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.balance-amount {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.nav-icon-img {
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+    filter: opacity(1);
+    transition: var(--transition);
+}
+
+.nav-content:hover .nav-icon-img {
+    filter: opacity(1);
+}
+
+/* Ensure search icon is always visible */
+#search-icon {
+    filter: opacity(1) !important;
+    display: block !important;
+    visibility: visible !important;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain !important;
+}
+
+.cash-active {
+    /* No background - just the icon like other nav items */
+}
+
+.cash-active:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.cash-icon-img {
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+}
+
+.activity-item {
+    position: relative;
+}
+
+/* PRIVACY STYLES */
+.hidden-name {
+    background: #e0e0e0;
+    color: transparent;
+    border-radius: 6px;
+    padding: 4px 12px;
+    user-select: none;
+}
+
+.hidden-cashtag {
+    background: #e0e0e0;
+    color: transparent;
+    border-radius: 6px;
+    padding: 2px 8px;
+    user-select: none;
+}
+
+.hidden-avatar {
+    background: #e0e0e0 !important;
+}
+
+.hidden-note {
+    background: #e0e0e0;
+    color: transparent;
+    border-radius: 6px;
+    padding: 4px 12px;
+    user-select: none;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+    .app-container {
+        gap: 30px;
+    }
+    .phone-container {
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 900px) {
+    .app-container {
+        flex-direction: column;
+        padding: 15px;
+        gap: 30px;
+    }
+    
+    .control-panel {
+        max-width: none;
+        position: static;
+        margin-bottom: 20px;
+        animation: slideInUp 0.6s ease-out;
+    }
+    
+    .phone-container {
+        transform: scale(0.85);
+        animation: slideInUp 0.8s ease-out;
+    }
+    
+    /* Reduce animations on mobile for better performance */
+    .phone-container {
+        animation: slideInUp 0.8s ease-out;
+    }
+    
+    @keyframes slideInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.85);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(0.85);
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .control-panel {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    
+    .phone-container {
+        transform: scale(0.75);
+        margin: 10px auto;
+    }
+    
+    .app-container {
+        padding: 10px;
+        gap: 20px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .primary-btn, .secondary-btn {
+        padding: 16px 20px;
+        font-size: 15px;
+    }
+    
+    /* Optimize animations for mobile */
+    * {
+        animation-duration: 0.3s !important;
+    }
+    
+    .control-panel:hover {
+        transform: translateY(-2px); /* Reduced hover effect on mobile */
+    }
+    
+    .iphone-frame:hover {
+        transform: translateY(-2px); /* Reduced hover effect on mobile */
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .control-panel:hover,
+    .iphone-frame:hover,
+    .primary-btn:hover,
+    .secondary-btn:hover,
+    .stats:hover,
+    .privacy-section:hover,
+    .control-group input:hover,
+    .control-group select:hover,
+    .stat-number:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+    
+    /* Keep only tap interactions for touch devices */
+    .primary-btn:active,
+    .secondary-btn:active {
+        transform: scale(0.95);
+    }
+} 
