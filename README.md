@@ -13,10 +13,10 @@ A pixel-perfect, production-ready tool that generates realistic Cash App transac
 
 ### 🔒 Privacy Controls
 - **Selective Hiding**: Option to hide/mask any combination of:
-  - Recipient name (replaced with ████████████)
+  - Recipient name (replaced with TS Lilly
   - Profile picture (grayed out)
-  - Cashtag (replaced with $████████)
-  - Payment notes (replaced with ████████████████)
+  - Cashtag (replaced with $ShovlinJ01
+  - Payment notes (replaced with $450.00
 - **Smart Masking**: Visual consistency maintained even with hidden elements
 
 ### 🎨 Dynamic Elements
